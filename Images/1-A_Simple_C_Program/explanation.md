@@ -26,17 +26,17 @@
     CMD ["/hello"]
     ```
     + The from statement
-        **FROM ubuntu:20.04**
+        `FROM ubuntu:20.04`
         + this statement species what your base image is, in this case it is ubuntu 20.04
     + the first run statement
-        **RUN apt-get update && apt-get install -y gcc**
+        `RUN apt-get update && apt-get install -y gcc`
         + This is installing dependancies on the image, so updating the system and installing the compilation tools for the C File
     + the copy statement
-        **COPY Src/hello.c Src/hello.c**
+        `COPY Src/hello.c Src/hello.c`
         + This copies the local source into the image to be ran
     + the second run statement
-        **RUN gcc Src/hello.c -o /hello**
+        `RUN gcc Src/hello.c -o /hello`
         + This runs the compilation command and generates the executable
     + The CMD statement
-        **CMD ["/hello"]**
+        `CMD ["/hello"]`
         + runs the executable and dumps the output into the local (not the image, but the actual machine) command line
