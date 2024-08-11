@@ -40,3 +40,48 @@
     + The CMD statement
         `CMD ["/hello"]`
         + runs the executable and dumps the output into the local (not the image, but the actual machine) command line
++ 4) run the CLI command to build the image
+    ```CMD
+    docker Builder build -t <container-image-name> .
+    ```
+    + Explination
+        + `docker builder build`
+            + this is the actual build command
+        + `-t <container-image-name>`
+            + this tags the container image with whatever you want, replace the `<container-image-name>` tag with whatever you want to call it
+        + `.`
+            + this argument is the source, this should be a `.` if you are in the directory that contains the docker file, or it should point to the directory containing the docker file
++ 5) run the CLI command to run the docker image
+    ```CMD
+    docker run --rm <container-image>
+    ```
+    + Explination
+        + `docker run`
+            + this is the run command that runs the docker image
+        + `--rm`
+            + this is the 'remove' tag, it just tells docker to kill the image once it stops executing. if it is note here, the image will stay alive indefinately.
+        + `<container-image>`
+            + this is the container image that you will be spinning up into a container
+
+### Adding the Python Applicaiton
++ AWESOME!, now that we have added a compilation for the C program, lets add a python application to the comilation list and make them both print to the console to see some neat features of Docker
++ 1) add the python file `hello.py` to the `Src` Directory and write a very simple application, in this case, lets do a "blast off" application below is the code for that
+    ```python
+    for x in reversed(range(10)):
+        print(x)
+    print("blast off!")
+    ```
++ 2) now we have to modify the Dockerfile to include an install for python3 and have it run the CLI command to run the file, below is the update DockerFile
+```Dockerfile
+    FROM ubuntu:20.04
+    RUN apt-get update && apt-get install -y gcc python3
+    COPY Src/hello.c Src/hello.c
+    COPY Src/hello.py Src/hello.py 
+    RUN gcc Src/hello.c -o /hello
+    CMD bash -c "/hello && python3 /Src/hello.py"
+```
++ 3) run the command to bulild a new image overtop of the old image
+    ```docker builder build -t hello_v2```
++ 4) run the command to spin up the new container
+    ```docker run --rm hello_v2```
+    
