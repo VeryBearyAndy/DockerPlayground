@@ -6,6 +6,6 @@ CREATE TABLE Dogs(
     kid_friendly BOOLEAN
 );
 INSERT INTO Dogs(Breed, dog_owner, Age, dog_name, kid_friendly)
-Values ('German-Shepherd', 'Maria Fernandez', 5, 'izabelle', 1),
-        ('chihuahua', 'Daniel Lee', 3, 'Misty', 0),
-        ('Golden Retriver', 'Tony Hawk', 7, 'totally-tubular', 1);
+Values ('German-Shepherd', 'Maria Fernandez', 5, 'izabelle', TRUE),
+        ('chihuahua', 'Daniel Lee', 3, 'Misty', FALSE),
+        ('Golden Retriver', 'Tony Hawk', 7, 'totally-tubular', TRUE);
