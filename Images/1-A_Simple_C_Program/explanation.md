@@ -84,4 +84,12 @@
     ```docker builder build -t hello_v2```
 + 4) run the command to spin up the new container
     ```docker run --rm hello_v2```
-    
+
+### clean up and notes
++ run the commands in the following sequence
+    + ```docker image prune```
+    + ```docker image remove image_1```
+    + ```docker image remove image_2```
++ this will remove any failed image builds and remove the two images you created. 
++ you will notice docker caches things between container image builds, this is extremely useful because it means in particularly hefty builds, build times are trimmed down quite a bit.
++ best practices dicatate that you baton pass builds to containers with minimal run specs and equipment, so you may... you a container to build a project, then copy and execute a build in a seperate container with minimal dependancies, a bare operating system, and no build tools available.
