@@ -14,3 +14,14 @@ We will be constructing a postgress database, Step by step we will go into more 
 + 3) write a python script that interacts with the database and inserts data from a CSV into the database
 
 through these 3 phases I will demonstrate the value of containers and container images in the DevOps tool chain to spin up envrionments that aid development with very minimal effort. 
+## Exposing Ports and aliasing them to the container
++ 1) in your dockerfile expose a port to connect with
+    ```cmd 
+        EXPOSE 5432
+    ```
++ 2) you need to run the container and specify the port you want to connect with
+    ```cmd
+        docker run -d -p 9876:5432 --name my_postgres_container my_postgres_image
+    ```
+    + This will expose port 9876 on your local environment to connect to the port 5432 inside the container
+    + the image and container are referencing to the running image and container respectively, if a container does not already exist, or if it exists under a different name, it will create a container with the listed name above
